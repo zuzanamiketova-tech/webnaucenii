@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Učební Asistent Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div id="dashboard-view" class="layout-grid">
+            
+            <div class="main-column">
+                <div class="welcome-card">
+                    <h1>Ahoj studentovi! 👋</h1>
+                    <p>Vítej ve svém studijním centru. Zadej přesně to téma, které se jdeš zrovna učit, zvol si počet otázek a otestuj se. Otázky se vygenerují přesně podle tvého zadání.</p>
+                </div>
+
+                <div class="card space">
+                    <h2><i class="fas fa-tags icon-pink"></i> Co se jdeš učit?</h2>
+                    <p class="card-desc">Zadej přesný název látky (např. <em>Druhá světová válka</em>, <em>Lineární rovnice</em>, <em>Starověký Řím</em>).</p>
+                    <input type="text" id="topic-input" placeholder="Například: Druhá světová válka...">
+                </div>
+
+                <div class="card space">
+                    <h2><i class="fas fa-list-ol icon-pink"></i> Kolik chceš otázek?</h2>
+                    <p class="card-desc">Zvol si, jak dlouhý a detailní má tvůj test být.</p>
+                    <select id="question-count-input" style="width: 100%; padding: 14px; background-color: #282828; border: 1px solid #444; border-radius: 8px; color: #fff; font-size: 1rem;">
+                        <option value="4">4 otázky (Rychlé zopakováni)</option>
+                        <option value="8" selected>8 otázek (Standardní test)</option>
+                        <option value="12">12 otázek (Pořádná zkouška)</option>
+                    </select>
+                </div>
+
+                <div class="card">
+                    <h2><i class="fas fa-sliders-h icon-pink"></i> Úroveň obtížnosti</h2>
+                    <p class="card-desc">Zvol si úroveň testu. Větší obtížnost znamená záludnější otázky.</p>
+                    
+                    <div class="difficulty-options">
+                        <input type="radio" id="easy" name="difficulty" value="lehká" checked>
+                        <label for="easy">
+                            <i class="fas fa-baby"></i>
+                            <span>Lehká</span>
+                        </label>
+                        
+                        <input type="radio" id="medium" name="difficulty" value="střední">
+                        <label for="medium">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Střední</span>
+                        </label>
+                        
+                        <input type="radio" id="hard" name="difficulty" value="těžká">
+                        <label for="hard">
+                            <i class="fas fa-brain"></i>
+                            <span>Těžká</span>
+                        </label>
+                    </div>
+                    
+                    <button class="btn-main" onclick="switchToTest()">
+                        <i class="fas fa-play-circle"></i> Vytvořit test na míru
+                    </button>
+                </div>
+            </div>
+
+            <div class="side-column">
+                <div class="card todo-card">
+                    <h3><i class="fas fa-check-square icon-pink"></i> Můj plán úkolů (To-Do List)</h3>
+                    <p class="card-desc">Co musíš dneska zvládnout?</p>
+                    
+                    <div id="todo-list">
+                        </div>
+                    
+                    <div class="todo-controls">
+                        <input type="text" id="todo-input-field" placeholder="Přidat vlastní úkol...">
+                        <button onclick="addTodo()"><i class="fas fa-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="test-view" class="hidden">
+            <div class="test-header">
+                <button class="back-btn" onclick="switchToDash()">
+                    <i class="fas fa-arrow-left"></i> Zpět na přehled
+                </button>
+                
+                <div class="timer-container">
+                    <div class="timer-mini" id="test-timer">00:00:00</div>
+                    <button id="timer-toggle-btn" onclick="toggleTimer()" class="timer-btn">Pauza</button>
+                </div>
+            </div>
+
+            <div id="test-content">
+                </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
